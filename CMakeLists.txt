@@ -19,6 +19,27 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(box2d)
 
-add_executable(mageshooter src/main.cpp "src/Player.cpp")
+file(GLOB_RECURSE SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h"
+)
+
+add_executable(mageshooter ${SOURCES})
+
+target_include_directories(mageshooter
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 
 target_link_libraries(mageshooter PRIVATE sfml-graphics sfml-window sfml-system box2d)
+
+foreach(source_file IN LISTS SOURCES)
+    file(RELATIVE_PATH rel_path "${CMAKE_CURRENT_SOURCE_DIR}/src" "${source_file}")
+
+    get_filename_component(dir "${rel_path}" PATH)
+
+    if(dir)
+        string(REPLACE "/" "\\" group_name "${dir}")
+        source_group("${group_name}" FILES "${source_file}")
+    endif()
+endforeach()

@@ -3,9 +3,13 @@
 #include "Player.h"
 #include "Shape.h"
 #include "GlobalConfig.h"
+#include "GameManager.h"
 
 int main() {
-    using ut = ms::UnitTag;
+    ms::GameManager gameManager;
+    gameManager.init();
+    gameManager.run();
+    /*using ut = ms::UnitTag;
     sf::RenderWindow window(sf::VideoMode(GlobalConfig::WINDOW_WIDTH, GlobalConfig::WINDOW_HEIGHT), "Box2D + SFML");
     window.setFramerateLimit(60);
     
@@ -33,7 +37,7 @@ int main() {
         p1.draw(window);
         r2.draw(window);
         window.display();
-    }
+    }*/
 
 	return 0;
 }

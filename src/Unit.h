@@ -14,11 +14,11 @@ namespace ms {
 
         operator T() const { return value; }
 
-        friend std::ostream& operator<<(std::ostream& os, const Unit& u) {
+        /*friend std::ostream& operator<<(std::ostream& os, const Unit& u) {
             os << u.value;
             if constexpr (Tag == UnitTag::Pixels) os << " px";
             else if constexpr (Tag == UnitTag::Meters) os << " m";
             return os;
-        }
+        }*/
     };
 }
